@@ -44,5 +44,22 @@ ng serve
 Acesse no navegador: [http://localhost:4200](http://localhost:4200)
 
 ---
+## Etapa 2 - Prototipação e Casos de Uso
+
+###  Design no Figma
+
+O protótipo de telas do sistema foi desenvolvido no Figma, com base na ideia de facilitar a organização das tarefas.
+
+🔗 Acesse o design:  
+[ Protótipo no Figma](https://www.figma.com/design/ZD4IRkj7dlkTbNcE048tDu/TO-DO-LIST?node-id=0-1&t=L6qFahx4KQ1IRMtD-1)
+
+### ✅ Casos de Uso
+
+#### 👤 Perfil de Usuário: Estudante
+
+- **Cadastrar Tarefa:** Estudante informa dados da tarefa e o sistema salva.
+- **Excluir Tarefa:** Estudante remove uma tarefa registrada.
+- **Listar Tarefas:** Sistema exibe tarefas do estudante com filtros.
+- **Vincular Tarefa à Disciplina:** Estudante seleciona a disciplina; o sistema associa a tarefa.
 
 > Esta é a base inicial do frontend. Nas próximas etapas serão adicionadas as telas, rotas, formulários e integração completa com o backend.
