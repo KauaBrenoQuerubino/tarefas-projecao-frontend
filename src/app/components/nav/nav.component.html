@@ -1,1 +1,23 @@
-<p>nav works!</p>
+
+<div [class.collapsed]="isCollapsed" class="sidebar">
+    <button (click)="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+    @if (!isCollapsed) {
+        <ul>
+          <li><a routerLink=""> Inicio</a></li>
+          <hr>
+          <li><a (click)="abrirDialogTarefas()">Adicionar Tarefa</a></li>
+          <hr>
+          <li><a (click)="abrirDialoMateria()">Organizar materias</a></li>
+          <hr>
+          <li><a (click)="abrirDialoCurso()">Organizar cursos</a></li>
+          <hr>
+          <li><a>entrar em contato</a></li>
+        </ul>
+    }
+    <button routerLink="/perfil"><i class="fa-solid fa-user"></i></button>
+</div>
+
+
+
+
+

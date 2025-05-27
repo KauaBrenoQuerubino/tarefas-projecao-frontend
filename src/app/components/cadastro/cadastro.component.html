@@ -1,1 +1,22 @@
-<p>cadastro works!</p>
+<div class="container">
+    <h1>cadastro</h1>
+    <span>
+        <p>digite sua matricula:</p>
+        <input type="number" [(ngModel)]="usuarioDados.matricula" placeholder="matricula">
+    </span>
+    <span>
+        <p>digite seu nome:</p>
+        <input type="text" [(ngModel)]="usuarioDados.nome" placeholder="nome">
+    </span>
+    <span>
+        <p>digite sua senha:</p>
+        <input type="password" [(ngModel)]="usuarioDados.senha" placeholder="senha">
+    </span>
+    <span>
+        <p>confirme sua senha:</p>
+        <input type="password" [(ngModel)]="confirmarSenha" placeholder="confirme sua senha">
+    </span>
+
+    <button (click)="criarUsuario()">entrar</button>
+    <a routerLink="/login">ja possuo um login</a>
+</div>

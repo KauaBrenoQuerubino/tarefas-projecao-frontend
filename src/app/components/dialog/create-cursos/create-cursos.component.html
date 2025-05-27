@@ -1,0 +1,17 @@
+
+    <h1>Criar Curso</h1>
+    <hr>
+    <div class="textos">
+        <span>
+            <label>Digite o Nome:</label>
+            <input [(ngModel)]="cursoDados.nome" type="text">
+        </span>
+        <span>
+            <label>Digite a duracao</label>
+            <input [(ngModel)]="cursoDados.duracao" type="text">
+        </span>
+    </div>
+    <div class="btns">
+        <button class="cancelar" (click)="closeDialog()">Cancelar</button>
+        <button class="salvar" (click)="criarCurso()" >salvar</button>
+    </div>

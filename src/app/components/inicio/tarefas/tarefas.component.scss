@@ -1,0 +1,83 @@
+:host {
+    
+    .emptyList {
+      display: flex;
+      flex-direction: column;
+      color:  var(--black-20);
+      gap: 15px;
+      .fa-solid {
+          font-size: 50px;
+      }
+  
+      h2, i {
+        text-align: center;
+        font-size: 20px;
+      }
+    }
+
+    .listaTarefas {
+          width: 100%;
+          max-width: 100%;
+          min-height: 60px;
+          display: block;
+          background: none;
+          border-radius: 4px;
+          overflow: hidden;
+          gap: 30px;
+
+
+
+        }
+        .tarefa {
+          font-weight: 600;  
+          padding: 0 10px;
+          border-radius: 10px;
+          width: 800px;
+          color: rgba(0, 0, 0, 0.87);
+          display: flex;
+          border-left: solid salmon 10px;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          box-sizing: border-box;
+          cursor: move;
+          background: rgb(207, 207, 207);
+          font-size: 14px;
+          margin: 20px;
+        
+          button {
+            margin: 0;
+            background: none;
+            cursor: pointer;
+          }
+
+          input {
+            height: 20px;
+            width: 20px;
+            border: none;
+            border-radius: 60px;
+          }
+
+          .materias {
+            display: flex;
+            gap: 10px;
+            p {
+                color: white;
+                background-color: salmon;
+                text-align: center;
+                font-size: 12px;
+                padding: 5px 10px;
+                border-radius: 20px;
+            }
+          }
+          
+        }
+
+        .cdk-drag-animating {
+          transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+        }
+
+        .listaTarefas.cdk-drop-list-dragging .tarefa:not(.cdk-drag-placeholder) {
+          transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+        }
+}

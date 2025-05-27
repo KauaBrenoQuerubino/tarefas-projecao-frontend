@@ -1,0 +1,57 @@
+:host {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .container {
+        padding: 0px 50px;
+        border-radius: 20px;
+        color: white;
+        display: flex;
+        width: 360px;
+        height: 400px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: var(--secundary-background);
+        background: var(--secundary);
+        gap: 10px;
+
+        h1 {
+            font-size: 32;
+        }
+
+        input {
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+        }
+
+        button {
+            width: 200px;
+            padding: 10px;
+            border-radius: 20px ;
+        }
+
+        span {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: start;
+            width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        
+
+
+    }
+}

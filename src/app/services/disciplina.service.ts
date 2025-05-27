@@ -1,9 +1,28 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, signal } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Tarefa } from '../models/tarefa.model';
+import { Disciplina } from '../models/disciplina.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DisciplinaService {
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
+
+  private url = signal('http://localhost:8080/disciplina')
+
+  public httpListDisc$(): Observable<Array<Disciplina>>{
+    return this.http.get<Disciplina[]>(this.url())
+  }
+
+  public httpCreateDisc$(DisciplinaData: Disciplina): Observable<Disciplina>{
+    return this.http.post<Disciplina>(this.url(), DisciplinaData);
+  }
+
+  public httpDeleteDisc$(id : string){
+    const endpoint = `${this.url()}/${id}`;
+    return this.http.delete((endpoint))
+  }
 }

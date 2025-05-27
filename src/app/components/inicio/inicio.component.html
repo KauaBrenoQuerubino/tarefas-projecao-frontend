@@ -1,15 +1,11 @@
-<aside>
-    
-    <app-nav />
-</aside>
+
+<app-nav />
 
 <main>
     <h1>UniTasks</h1>
     <hr>
-    
-    <div cdkDropList class="listaTarefas" (cdkDropListDropped)="drop($event)">
-        @for (movie of movies; track movie) {
-          <div class="tarefa concluido" cdkDrag>{{movie}}</div>
-        }
-    </div>
+
+    <app-tarefas />
+
+    <button (click)="abrirDialog()"><i class="fa-solid fa-plus"></i></button>
 </main>

@@ -1,0 +1,32 @@
+
+    <h1>Criar Tarefa</h1>
+    <hr>
+    <div class="textos">
+        <span>
+            <label>Digite o Titulo</label>
+            <input [(ngModel)]="tarefaDados.titulo" type="text">
+        </span>
+        <span>
+            <label>Digite a Data</label>
+            <input [(ngModel)]="tarefaDados.limite" type="text">
+        </span>
+    </div>
+    <div class="atributos">
+        <span>
+            <label>Digite a Descrição:</label>
+            <textarea name="" [(ngModel)]="tarefaDados.descricao" id=""></textarea>
+        </span>
+        <div class="materias">
+            <label for="opcoes">Materias: </label>
+            <select id="opcoes" [(ngModel)]="tarefaDados.disciplina">
+                <option value="" disabled selected>Selecione</option>
+                @for (disc of discDados; track disc) {
+                    <option [ngValue]="disc">{{disc.nome}}</option>
+                }   
+            </select>
+        </div>
+    </div>
+    <div class="btns">
+        <button class="cancelar" (click)="closeDialog()">Cancelar</button>
+        <button class="salvar" (click)="criarTarefa()">salvar</button>
+    </div>

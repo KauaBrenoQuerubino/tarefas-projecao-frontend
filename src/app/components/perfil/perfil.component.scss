@@ -1,0 +1,45 @@
+
+  :host {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    main {
+        
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+
+        h1 {
+          font-size: 40px;
+          background: var(--secundary); 
+          -webkit-background-clip: text; 
+          -webkit-text-fill-color: transparent;
+        }
+
+        hr {
+          margin-bottom: 100px;
+          border: none;
+          background: var(--secundary);
+          width: 250px;
+          height: 2px;
+        }
+
+        button {
+          background-color: var(--green);
+          height: 60px;
+          width: 60px;
+          border-radius: 100%;
+          position: fixed;
+          left: 85%;
+          top: 75%;
+          color: white;
+          font-size: 30px;
+        }
+
+        
+    }
+  }

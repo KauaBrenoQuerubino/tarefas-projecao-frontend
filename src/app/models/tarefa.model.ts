@@ -1,8 +1,18 @@
 export interface Tarefa{
-    id: number;
+    id?: string;
     titulo: string;
     descricao: string;
-    inicio: Date;
-    limite: Date;
+    limite: string;
     status: string;
+    usuario: {
+        matricula: number;
+        nome: string | null;
+        senha: string | null;
+        curso: string | null;
+    };
+    disciplina: {
+        id?: string;
+        nome: string | null;
+        curso?: string | null;
+  };
 }

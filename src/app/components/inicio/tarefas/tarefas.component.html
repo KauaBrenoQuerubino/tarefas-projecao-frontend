@@ -1,0 +1,34 @@
+
+ <div cdkDropList class="listaTarefas" (cdkDropListDropped)="drop($event)">
+        
+  @if (tarefas == null || tarefas.length == 0) {
+    <div class="emptyList">
+      <i class="fa-solid fa-face-grin-beam"></i>
+      <h2> Parece que suas tarefas estão vazias! Que tal embarcar em um novo desafio?
+      <br>Clique no botão + para adicionar suas novas tarefas</h2>
+    </div>
+  }@else {
+    @for (tarefas of tarefas; track tarefas) {
+            <div class="tarefa" cdkDrag>
+              <input
+                  type="checkbox"
+                  [checked]="tarefas.status === 'concluido'"
+                  />
+              
+              <p>{{tarefas.titulo}}</p>
+  
+              <div class="materias">
+                  <p>{{tarefas.disciplina.nome}}</p>
+              </div>
+  
+              <p>{{tarefas.limite}}</p>
+              <button (click)="apagarTarefa(tarefas.id)"><i class="fa-solid fa-trash"></i></button>
+            </div>
+            
+          }
+  }
+  
+        
+</div>
+
+

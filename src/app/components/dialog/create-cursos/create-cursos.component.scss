@@ -1,0 +1,75 @@
+:host{
+    height: 40vh;
+    width: 500px !important;
+    margin: 0;
+    border-radius: 2px !important;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--gray);
+    font-weight: 600;
+
+    gap: 5px;
+
+    .textos {
+        display: flex;
+        gap: 10px;
+        span {
+            display: flex;
+            flex-direction: column;
+
+            input {
+                
+                border: none;
+                border-radius: 20px;
+                padding: 10px;
+            }
+
+        }
+    }
+
+    .atributos {
+        
+        width: 79%;
+        display: flex;
+        
+    
+        justify-content: space-between;
+
+        span {
+            display: flex;
+            flex-direction: column;
+        }
+
+        textarea{
+            border: none;
+            border-radius: 20px;
+            padding: 10px;
+            height: 200px;
+        }
+    }
+
+    .btns {
+        display: flex;
+        gap: 20px;
+
+        button {
+            color: var(--white);
+            border-radius: 20px;
+            padding: 5px 20px;
+        }
+
+        .salvar {
+            background-color: var(--green);
+        }
+
+        .cancelar {
+            background-color: var(--red);
+        }
+    }
+
+
+}

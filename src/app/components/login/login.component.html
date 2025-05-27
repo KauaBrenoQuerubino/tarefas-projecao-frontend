@@ -1,1 +1,15 @@
-<p>login works!</p>
+<div class="container">
+    <h1>login</h1>
+    <span>
+        <p>digite sua matricula:</p>
+        <input type="number" [(ngModel)]="usuarioDados.matricula" placeholder="matricula">
+    </span>
+    <span>
+        <p>digite sua senha:</p>
+        <input type="password" [(ngModel)]="usuarioDados.senha" placeholder="senha">
+    </span>
+    <a>esqueci a senha</a>
+
+    <button (click)="procurarUsuario()">entrar</button>
+    <a routerLink="/cadastro" class="link">Não tem conta? Cadastre-se</a>
+</div>
