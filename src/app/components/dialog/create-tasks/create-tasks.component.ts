@@ -9,6 +9,8 @@ import { TarefaService } from '../../../services/tarefa.service';
 import { FormsModule } from '@angular/forms';
 import { DisciplinaService } from '../../../services/disciplina.service';
 import { Disciplina } from '../../../models/disciplina.model';
+import { firstValueFrom } from 'rxjs';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-create-tasks',
@@ -18,14 +20,35 @@ import { Disciplina } from '../../../models/disciplina.model';
 })
 export class CreateTasksComponent {
 
-  ngOnInit(){
+async ngOnInit(){
     this.ListarDisc()
+    const matricula = await this.getMatricula();
+
+    if (!matricula) return;
+
+    this.tarefaDados = {
+      titulo: '',
+      descricao: '',
+      limite: '',
+      status: 'Pendente',
+      usuario: {
+        matricula: matricula,
+        nome: null,
+        senha: null,
+        curso: null
+      },
+      disciplina: {
+        id: '0',
+        nome: null,
+        curso: null
+      }
+    };
   }
 
 
   constructor(
     private _dialogRef: MatDialogRef<CreateTasksComponent>,
-    private http: HttpClient, private router: Router
+    private router: Router, private authService: AuthService
   ) {}
 
   tarefaService = inject(TarefaService);
@@ -33,28 +56,21 @@ export class CreateTasksComponent {
 
 
   discDados: Disciplina[] = []
-    
-  tarefaDados: Tarefa = {
-    titulo: '',
-    descricao: '',
-    limite: '',   
-    status: 'Pendente',   
-    usuario: {
-      matricula: Number(localStorage.getItem("matricula")),
-      nome: null,
-      senha: null,
-      curso: null
-    },
-    disciplina: {
-      id: '0',
-      nome: null,
-      curso: null
-    }
-  };
 
+ async getMatricula(): Promise<number | null> {
+  const matricula = await firstValueFrom(this.authService.getMatricula$());
+
+  if (matricula === null) {
+    this.router.navigate(['/login']);
+  }
+
+  return matricula;
+}
+    
+tarefaDados!: Tarefa;
 
   public ListarDisc() {
-    this.discService.httpListDisc$().subscribe({
+    this.discService.httpListDisc$(this.tarefaDados.usuario.matricula).subscribe({
       next: (dados) => {
         this.discDados = dados;
       },
@@ -63,8 +79,6 @@ export class CreateTasksComponent {
   }
 
   public criarTarefa() {
-
-    console.log('Dados enviados:', this.tarefaDados);
 
     this.tarefaService.httpCreateTask$(this.tarefaDados).subscribe({
       next: (res: Tarefa) => {

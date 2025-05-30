@@ -15,10 +15,15 @@ export class TarefaService {
   public httpListTask$(matricula : number): Observable<Array<Tarefa>>{
     return this.http.get<Tarefa[]>((`${this.url()}/usuarios/${matricula}`))
   }
+  
 
   public httpCreateTask$(tarefaData: Tarefa): Observable<Tarefa>{
       return this.http.post<Tarefa>(this.url(), tarefaData);
-    }
+  }
+
+  public httpUpdateTask$(tarefaData: Tarefa): Observable<Tarefa>{
+      return this.http.put<Tarefa>(this.url(), tarefaData);
+  }
 
   public httpDeleteTask$(id : string | undefined){
     const endpoint = `${this.url()}/${id}`;

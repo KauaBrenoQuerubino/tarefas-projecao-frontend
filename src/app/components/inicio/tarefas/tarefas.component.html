@@ -9,11 +9,12 @@
     </div>
   }@else {
     @for (tarefas of tarefas; track tarefas) {
+      
             <div class="tarefa" cdkDrag>
               <input
                   type="checkbox"
                   [checked]="tarefas.status === 'concluido'"
-                  />
+                />
               
               <p>{{tarefas.titulo}}</p>
   

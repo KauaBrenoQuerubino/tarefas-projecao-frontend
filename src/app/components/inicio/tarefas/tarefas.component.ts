@@ -4,6 +4,9 @@ import { CdkDrag, CdkDropList, CdkDragDrop, moveItemInArray } from '@angular/cdk
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Tarefa } from '../../../models/tarefa.model';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-tarefas',
@@ -16,19 +19,27 @@ export class TarefasComponent {
 
   tarefas: Tarefa[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router) {}
 
   private tarefaService = inject(TarefaService)
 
-  ngOnInit(): void {
-    this.tarefaService.httpListTask$(Number(localStorage.getItem("matricula"))).subscribe({
-      next: (dados) => {
-        this.tarefas = dados;
+
+  async ngOnInit() {
+
+    this.authService.getMatricula$().subscribe((matricula) => {
+      if (matricula !== null) {
+        this.tarefaService.httpListTask$(matricula).subscribe({
+          next: (dados) => {
+            this.tarefas = dados;
+          },
+          error: (error) => console.log(error),
+        })
       }
-      ,
-      error: (error) => console.log(error),
-    })
-  }
+    }
+  )
+}
+
+  tarefaDados!: Tarefa;
 
   apagarTarefa(id : string | undefined) {
       console.log(id)
@@ -44,7 +55,15 @@ export class TarefasComponent {
       })
   }
 
-
+   async getMatricula(): Promise<number | null> {
+    const matricula = await firstValueFrom(this.authService.getMatricula$());
+  
+    if (matricula === null) {
+      this.router.navigate(['/login']);
+    }
+  
+    return matricula;
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.tarefas, event.previousIndex, event.currentIndex);

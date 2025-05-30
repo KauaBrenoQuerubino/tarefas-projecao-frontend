@@ -13,8 +13,8 @@ export class DisciplinaService {
 
   private url = signal('http://localhost:8080/disciplina')
 
-  public httpListDisc$(): Observable<Array<Disciplina>>{
-    return this.http.get<Disciplina[]>(this.url())
+  public httpListDisc$(matricula : number | null): Observable<Array<Disciplina>>{
+    return this.http.get<Disciplina[]>(`${this.url()}/${matricula}`)
   }
 
   public httpCreateDisc$(DisciplinaData: Disciplina): Observable<Disciplina>{

@@ -18,7 +18,7 @@ export class UsuarioService {
     return this.http.post(this.url(), userData);
   }
 
-  public httpGetUser$(id : number): Observable<Usuario>{
+  public httpGetUser$(id : number | null): Observable<Usuario>{
     const endpoint = `${this.url()}/${id}`;
     return this.http.get<Usuario>((endpoint))
   }

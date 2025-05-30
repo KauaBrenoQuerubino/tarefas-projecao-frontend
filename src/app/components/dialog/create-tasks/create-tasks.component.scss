@@ -15,7 +15,9 @@
 
     .textos {
         display: flex;
-        gap: 10px;
+        justify-content: space-between;
+        width: 79%;
+        
         span {
             display: flex;
             flex-direction: column;
@@ -33,7 +35,6 @@
     .atributos {
         display: flex;
         width: 79%;
-        display: flex;
         
     
         justify-content: space-between;
@@ -46,8 +47,8 @@
         .materias {
             display: flex;
             flex-direction: column;
-            align-items: start;
-            width: 50%;
+            
+           
             select {
                 border: none;
                 border-radius: 20px;

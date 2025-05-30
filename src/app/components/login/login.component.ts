@@ -4,6 +4,10 @@ import { Router, RouterModule } from '@angular/router';
 import { Usuario } from '../../models/usuario.model';
 import { UsuarioService } from '../../services/usuario.service';
 import { FormsModule } from '@angular/forms';
+import { Tarefa } from '../../models/tarefa.model';
+import { tokenDTO} from '../../models/token.model';
+import { TokenService } from '../../services/token.service';
+import { authtoken } from '../../models/authtoken.model';
 
 @Component({
   selector: 'app-login',
@@ -14,31 +18,22 @@ import { FormsModule } from '@angular/forms';
 export class LoginComponent {
     constructor(private http: HttpClient, private router: Router) {}
 
-    usuarioService = inject(UsuarioService);
+    tokenService = inject(TokenService);
     
-    usuarioDados: Usuario = {
+    tokenDados: tokenDTO = {
       matricula: 0,
-      nome: '',
       senha: ''
     };
 
-    dados = ""
-
-    
-
-    public procurarUsuario() {
-      this.usuarioService.httpGetUser$(this.usuarioDados.matricula).subscribe({
-        next: (res: Usuario) => {
-            if (res.senha === this.usuarioDados.senha) {
-              localStorage.setItem("matricula", res.matricula.toString());
-              this.router.navigate(['']); 
-            } else {
-              window.alert('Senha incorreta');
-            }
-          },
-      error: err => {
+    public gerarToken() {
+      this.tokenService.httpGerarToken$(this.tokenDados).subscribe({
+        next: (res : authtoken) => {
+            localStorage.setItem("auth", res.token)
+            this.router.navigate(['']);
+        },
+        error: err => {
           console.error('Erro ao buscar usuário:', err);
-          window.alert('Usuário não encontrado');
+          window.alert('Verifique suas credenciais');
         }
       });
     

@@ -21,12 +21,12 @@ import { timeInterval } from 'rxjs';
 })
 export class NavComponent {
 
-  isCollapsed = false;
+  isCollapsed = true;
 
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed 
   }
-   sidebarVisible: boolean = true;
+   sidebarVisible: boolean = false;
 
    #dialog = inject(MatDialog)
 

@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from '../../../models/usuario.model';
 import { UsuarioService } from '../../../services/usuario.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-dados',
@@ -17,7 +18,7 @@ export class DadosComponent {
   }
  
  
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
 
   usuarioService = inject(UsuarioService);
     
@@ -28,16 +29,18 @@ export class DadosComponent {
   };
 
   public procurarUsuario() {
-    this.usuarioService.httpGetUser$(Number(localStorage.getItem("matricula"))).subscribe({
+    
+  this.authService.getMatricula$().subscribe((matricula) => {
+    this.usuarioService.httpGetUser$(matricula).subscribe({
       next: (res: Usuario) => {
             this.usuarioDados.matricula = res.matricula
             this.usuarioDados.nome = res.nome
-        },
+      },
     error: err => {
         console.error('Erro ao buscar usuário:', err);
         window.alert('Usuário não encontrado');
       }
     });
-    
+  })
   }
 }

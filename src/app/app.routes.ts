@@ -21,10 +21,6 @@ export const routes: Routes = [
     {
         path: "perfil",
         component: PerfilComponent
-    },
-    {
-        path: "nav",
-        component: NavComponent
     }
     
 ];

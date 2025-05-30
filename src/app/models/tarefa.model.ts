@@ -5,7 +5,7 @@ export interface Tarefa{
     limite: string;
     status: string;
     usuario: {
-        matricula: number;
+        matricula: number | null;
         nome: string | null;
         senha: string | null;
         curso: string | null;

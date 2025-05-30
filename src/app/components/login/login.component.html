@@ -2,14 +2,14 @@
     <h1>login</h1>
     <span>
         <p>digite sua matricula:</p>
-        <input type="number" [(ngModel)]="usuarioDados.matricula" placeholder="matricula">
+        <input type="number" [(ngModel)]="tokenDados.matricula" placeholder="matricula">
     </span>
     <span>
         <p>digite sua senha:</p>
-        <input type="password" [(ngModel)]="usuarioDados.senha" placeholder="senha">
+        <input type="password" [(ngModel)]="tokenDados.senha" placeholder="senha">
     </span>
     <a>esqueci a senha</a>
 
-    <button (click)="procurarUsuario()">entrar</button>
+    <button (click)="gerarToken()">entrar</button>
     <a routerLink="/cadastro" class="link">Não tem conta? Cadastre-se</a>
 </div>
