@@ -62,4 +62,10 @@ O protótipo de telas do sistema foi desenvolvido no Figma, com base na ideia de
 - **Listar Tarefas:** Sistema exibe tarefas do estudante com filtros.
 - **Vincular Tarefa à Disciplina:** Estudante seleciona a disciplina; o sistema associa a tarefa.
 
+## Etapa 3 - Entrega do projeto final
+
+Entrega da versão final do projeto com todas as funcionalidades implementadas. Foram realizados testes, revisões de código e ao longo da semana serão feitas correções de bugs e ajustes pontuais conforme identificados.
+
 > Esta é a base inicial do frontend. Nas próximas etapas serão adicionadas as telas, rotas, formulários e integração completa com o backend.
+
+#
