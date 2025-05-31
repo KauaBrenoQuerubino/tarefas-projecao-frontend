@@ -1,11 +1,15 @@
 import { Curso } from "./curso.model";
 
 export interface Disciplina {
-    id?: number;
+  id?: number;
+  nome: string;
+  curso: {
+    id?: string;
     nome: string;
-    Curso: {
-        id?: string;
-        nome: string;
-        duracao: string; 
-    }
+    duracao: string;
+    usuario: {
+      matricula: number | null;
+      nome?: string;
+    };
+  };
 }

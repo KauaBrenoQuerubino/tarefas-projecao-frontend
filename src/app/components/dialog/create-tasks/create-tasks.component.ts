@@ -21,10 +21,6 @@ import { AuthService } from '../../../services/auth.service';
 export class CreateTasksComponent {
 
 async ngOnInit(){
-    this.ListarDisc()
-    const matricula = await this.getMatricula();
-
-    if (!matricula) return;
 
     this.tarefaDados = {
       titulo: '',
@@ -32,7 +28,7 @@ async ngOnInit(){
       limite: '',
       status: 'Pendente',
       usuario: {
-        matricula: matricula,
+        matricula: await this.getMatricula(),
         nome: null,
         senha: null,
         curso: null
@@ -43,6 +39,8 @@ async ngOnInit(){
         curso: null
       }
     };
+
+    this.ListarDisc()
   }
 
 
@@ -73,6 +71,7 @@ tarefaDados!: Tarefa;
     this.discService.httpListDisc$(this.tarefaDados.usuario.matricula).subscribe({
       next: (dados) => {
         this.discDados = dados;
+        console.log(dados)
       },
       error: (error) => console.log(error),
     })

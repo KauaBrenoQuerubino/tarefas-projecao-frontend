@@ -8,6 +8,8 @@ import { DisciplinaService } from '../../../services/disciplina.service';
 import { Curso } from '../../../models/curso.model';
 import { FormsModule } from '@angular/forms';
 import { CursoService } from '../../../services/curso.service';
+import { AuthService } from '../../../services/auth.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-create-materias',
@@ -18,11 +20,23 @@ import { CursoService } from '../../../services/curso.service';
 export class CreateMateriasComponent {
   constructor(
     private _dialogRef: MatDialogRef<CreateMateriasComponent>,
-    private http: HttpClient, private router: Router
+    private http: HttpClient, private router: Router, private authService: AuthService
   ) {}
 
-  ngOnInit() {
-    this.ListarDisc()
+  async ngOnInit() {
+    
+    this.discDados = {
+      nome: "",
+      curso: {
+        nome: "",
+        duracao: "",
+        usuario: {
+          matricula: await this.getMatricula(),
+        }
+      }
+    };
+
+    this.ListarCurso()
   }
 
 
@@ -31,30 +45,43 @@ export class CreateMateriasComponent {
   
 
   cursoArray: Curso[] = []
+  discDados!: Disciplina;
+  
 
-  discDados: Disciplina = {
-    nome: "",
-    Curso: {
-      nome: "",
-      duracao: ""
-    }
-  };
 
-  public criarDisciplina() {
+  public async criarDisciplina() {
+
+    if (this.discDados.curso) {
+    this.discDados.curso.usuario = {
+      matricula: await this.getMatricula()
+    };
+  }
+   
     console.log(this.discDados)
     this.discService.httpCreateDisc$(this.discDados).subscribe({
-      next: (res: Disciplina) => {
-          window.location.reload();
+      next: (res) => {
+        window.location.reload();
       },
     error: err => {
-        console.error('Erro ao criar tarefa:', err);
-        window.alert('Erro ao criar tarefa');
+        console.error('Erro ao criar disciplina:', err);
+        window.alert('Erro ao criar disciplina');
       }
     });
   }
 
 
-  public ListarDisc() {
+  async getMatricula(): Promise<number | null> {
+    const matricula = await firstValueFrom(this.authService.getMatricula$());
+  
+    if (matricula === null) {
+      this.router.navigate(['/login']);
+    }
+  
+    return matricula;
+  }
+
+
+  public ListarCurso() {
     this.cursoService.httpListCurso$().subscribe({
       next: (dados) => {
         this.cursoArray = dados;

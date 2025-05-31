@@ -6,6 +6,8 @@ import { CreateTasksComponent } from '../create-tasks/create-tasks.component';
 import { Curso } from '../../../models/curso.model';
 import { CursoService } from '../../../services/curso.service';
 import { FormsModule } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-create-cursos',
@@ -15,18 +17,24 @@ import { FormsModule } from '@angular/forms';
 })
 export class CreateCursosComponent {
     constructor(
-    private _dialogRef: MatDialogRef<CreateCursosComponent>,
-    private http: HttpClient, private router: Router
-  ) {}
+      private _dialogRef: MatDialogRef<CreateCursosComponent>,
+      private http: HttpClient, private router: Router, private authService: AuthService
+    ) {}
 
-  
+  async ngOnInit() {
+    
+    this.cursoDados = {
+      nome: "",
+      duracao: "",
+      usuario: {
+        matricula: await this.getMatricula(),
+      }
+      }
+    };
 
   cursoService = inject(CursoService);
   
-  cursoDados: Curso = {
-    nome: "",
-    duracao: ""
-  }
+  cursoDados!: Curso;
 
   public criarCurso() {
     this.cursoService.httpCreateCurso$(this.cursoDados).subscribe({
@@ -40,10 +48,19 @@ export class CreateCursosComponent {
     });
   }
 
-  
+  async getMatricula(): Promise<number | null> {
+      const matricula = await firstValueFrom(this.authService.getMatricula$());
+    
+      if (matricula === null) {
+        this.router.navigate(['/login']);
+      }
+    
+      return matricula;
+    }
 
 
   public closeDialog(){
     return this._dialogRef.close()
   }
 }
+

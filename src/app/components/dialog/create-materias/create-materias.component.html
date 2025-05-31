@@ -1,5 +1,5 @@
 
-    <h1>Criar Materia</h1>
+    <h1>Criar disciplina</h1>
     <hr>
     <div class="textos">
         <span>
@@ -7,9 +7,9 @@
             <input [(ngModel)]="discDados.nome" type="text">
         </span>
         <span>
-            <label for="opcoes">Escolha uma opção:</label>
-            <select id="opcoes" [(ngModel)]="discDados.Curso">
-                <option value="" disabled selected>Selecione</option>
+            <label for="opcoes">Escolha um curso:</label>
+            <select id="opcoes" [(ngModel)]="discDados.curso">
+                <option [ngValue]="null" disabled selected>Selecione</option>
                   @for (curso of cursoArray; track curso) {
                     <option [ngValue]="curso">{{curso.nome}}</option>
                 }
